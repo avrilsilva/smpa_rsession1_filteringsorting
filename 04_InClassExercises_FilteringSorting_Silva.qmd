@@ -48,7 +48,10 @@ impeach
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "NO")
 
+# For this question, I wanted to use the %>% command to hopefully simplify the commands in order to build off of this command and set it up well for future questions. 
 
 
 
@@ -59,6 +62,10 @@ impeach
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "NO", p16winningparty == "R")
+
+# Looking back at the notes from class on how to add multiple filters for one table, I added the comma to separate the different filters and used the '==' to select just the Republicans from 2016. 
 
 
 
@@ -69,7 +76,10 @@ impeach
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "NO", p16winningparty == "R", p12winningparty == "R")
 
+# Similar to the last question, I selected only the Republicans, delineated by the 'R', and used the same filters, building off my string of code that I have from the previous questions. 
 
 
 
@@ -79,8 +89,10 @@ impeach
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "YES", date_month == 9, date_year == 2019)
 
-
+# Like the first question, I used the %>% (pipe) command to select the data set and the filter I wanted to use, this time selecting those who agree with the impeachment. Then, I used the date_month and date_year columns to only select those from September 2019. I had to look back at this question and find that there were indeed values for those columns other than the NAs that populated it. 
 
 
 ```
@@ -89,7 +101,10 @@ impeach
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "YES", clinton_percent > 70)
 
+# I used the comma to build off of the initial filter command like I did for the second question and looked at the notes from class to find the greater than symbol to designate more than 70 percent for that column. 
 
 
 
@@ -100,8 +115,10 @@ bachelor's degree or higher ("pct_bachelors"), from lowest to highest.
 
 ```{r}
 
+impeach %>%
+  arrange(pct_bachelors)
 
-
+# For this question, I was a little confused between the 'select' and 'arrange' commands, but once I realized that arrange was used for sorting, I was able to do it successfully from lowest to highest for the entire dataframe. 
 
 
 
@@ -111,7 +128,11 @@ bachelor's degree or higher ("pct_bachelors"), from lowest to highest.
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "NO") %>%
+  arrange(pct_bachelors)
 
+# I like how this type of coding can become more intuitive over time. I looked back at the code that I created earlier and added the sorting for the bachelor's degrees onto it using the pipe command to create one large line of code. 
 
 
 
@@ -123,9 +144,12 @@ Then filter those records by only those whose bachelor's percentage is below the
 
 ```{r}
 
+impeach %>% 
+  filter(for_impeachment == "NO") %>%
+  arrange(pct_bachelors) %>%
+  filter(pct_bachelors_compared_to_national == "BELOW")
 
-
-
+# Using the code from the last question, I added the additional filter for those whose bachelor's percentage is below the national average at the end to ensure I had all the data points I needed and did it in the correct order. 
 
 
 ```
@@ -134,7 +158,11 @@ Then filter those records by only those whose bachelor's percentage is below the
 
 ```{r}
 
+impeach %>% 
+  filter(state == "NJ") %>% 
+  filter(for_impeachment == "NO")
 
+# For this question, I had to look at what column designated the state that a House member was from and how New Jersey was represented (that being NJ) and then out of those filtering out only the ones that are against impeachment. The order here was super important to me to note before completing the line of code to ensure clarity.
 
 
 
@@ -144,7 +172,11 @@ Then filter those records by only those whose bachelor's percentage is below the
 
 ```{r}
 
+impeach %>%
+  filter(for_impeachment == "YES", date_year < 2019) %>% 
+  arrange(desc(clinton_percent))
 
+# This question was a little on the trickier side but I think I got it. I first filtered the dataset for the impeachment, then only selected those with a declared date prior to 2019 by using the date_year category. From there, I made sure to do the descending command along with the arrange command in order to sort it by the highest Clinton cote percentages at the top. 
 
 
 
